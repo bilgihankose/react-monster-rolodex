@@ -17,6 +17,10 @@ class App extends React.Component {
       .then((users) => this.setState({ monsters: users }));
   }
   render() {
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchField.toLowerCase())
+    );
     return (
       <div className="App">
         <input
@@ -27,7 +31,8 @@ class App extends React.Component {
             // console.log(this.state) // if we wanted to see or do something with our state right after we said it, then we have to do it inside of this second argument function that will get called right after such state.
           }}
         />
-        <CardList monsters={this.state.monsters} />
+        {/* <CardList monsters={this.state.monsters} /> */}
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }

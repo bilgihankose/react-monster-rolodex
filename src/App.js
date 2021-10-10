@@ -1,5 +1,7 @@
 import React from "react";
 import CardList from "./components/CardList/CardList";
+import SearchBox from "./components/SearchBox/SearchBox";
+import "./App.css";
 
 class App extends React.Component {
   constructor() {
@@ -23,15 +25,12 @@ class App extends React.Component {
     );
     return (
       <div className="App">
-        <input
-          type="search"
+        <SearchBox
           placeholder="search monster"
-          onChange={(event) => {
-            this.setState({ searchField: event.target.value }); // this.setState({ searchField: event.target.value }, () =>
-            // console.log(this.state) // if we wanted to see or do something with our state right after we said it, then we have to do it inside of this second argument function that will get called right after such state.
+          handleChange={(e) => {
+            this.setState({ searchField: e.target.value });
           }}
         />
-        {/* <CardList monsters={this.state.monsters} /> */}
         <CardList monsters={filteredMonsters} />
       </div>
     );
